@@ -1,0 +1,27 @@
+pipeline{
+    def customImage
+    agent any
+    stages{
+       stage('SCM checkout')
+            {
+            steps{ 
+                git 'https://github.com/m1m2m3/CI-CD-with-Docker.git'
+                 }
+             }
+        stage('Push to Registry')
+            {
+            steps{ 
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') 
+                        {
+                           def customImage = docker.build("my-image:${env.BUILD_ID}")
+                           customImage.push()
+                        }
+                echo "Trying to Push Docker Build to DockerHub"
+                 }
+             }
+    
+         }
+    
+    
+    
+}
