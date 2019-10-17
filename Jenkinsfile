@@ -16,6 +16,18 @@ pipeline{
                 }
                  }
              }
+        stage('Push to Registry')
+            {
+            steps{ 
+                withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') 
+                        {
+                            customImage.push("${env.BUILD_ID}")
+                            customImage.push("latest")
+                          // some block
+                        }
+                echo "Trying to Push Docker Build to DockerHub"
+                 }
+             }
     
          }
     
