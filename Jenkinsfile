@@ -2,13 +2,16 @@ pipeline{
 
     agent any{
     
-    stages {
+    stages 
+        {
        stage('SCM checkout')
             {
-            steps{}
+            steps{ 
+                git 'https://github.com/m1m2m3/CI-CD-with-Docker.git'
+                 }
              }
     
-      }
+         }
     
     
     }
