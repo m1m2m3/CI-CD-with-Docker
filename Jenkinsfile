@@ -23,7 +23,7 @@ pipeline{
                 withDockerRegistry(credentialsId: 'dockerhub', url: 'https://hub.docker.com/') 
                         {
                             customImage.push("${env.BUILD_ID}")
-                            customImage.push("latest")
+                            customImage.push()
                           // some block
                         }
                 echo "Trying to Push Docker Build to DockerHub"
