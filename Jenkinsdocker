@@ -6,7 +6,7 @@ pipeline {
   }
   agent any
   stages {
-    stage('Cloning Git') {
+    stage('SCM checkout') {
       steps {
         git 'https://github.com/m1m2m3/CI-CD-with-Docker.git'
       }
@@ -18,7 +18,7 @@ pipeline {
         }
       }
     }
-    stage('Deploy Image') {
+    stage('Deploying Image') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {
